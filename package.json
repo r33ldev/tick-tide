@@ -6,7 +6,7 @@
   "scripts": {
     "electron": "electron .",
     "build:win": "electron-builder --win",
-    "build:mac": "electron-builder --mac",
+    "build:mac": "electron-builder --mac --x64",
     "dev": "EXPO_NO_TELEMETRY=1 expo start",
     "build:web": "expo export --platform web",
     "lint": "expo lint"
@@ -18,13 +18,36 @@
       "target": "nsis"
     },
     "mac": {
-      "target": "dmg"
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
+      ],
+      "compression": "maximum",
+      "icon": "build/icon.icns"
     },
     "files": [
       "main.js",
-      "dist/**/*"
+      "package.json",
+      "dist/**/*",
+      "!node_modules/.cache",
+      "!node_modules/electron",
+      "!node_modules/electron-builder",
+      "!node_modules/electron-packager",
+      "!node_modules/**/test",
+      "!**/*.map",
+      "!**/*.md",
+      "!**/__tests__",
+      "!**/*.log",
+      "!**/*.ts",
+      "!**/*.tsx"
     ],
-    "asar": true
+    "asar": true,
+    "compression": "maximum"
   },
   "dependencies": {
     "@expo-google-fonts/inter": "^0.2.3",
