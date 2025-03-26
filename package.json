@@ -1,12 +1,30 @@
 {
-  "name": "bolt-expo-starter",
-  "main": "expo-router/entry",
+  "name": "@ticktide/app",
+  "main": "main.js",
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "electron": "electron .",
+    "build:win": "electron-builder --win",
+    "build:mac": "electron-builder --mac",
     "dev": "EXPO_NO_TELEMETRY=1 expo start",
     "build:web": "expo export --platform web",
     "lint": "expo lint"
+  },
+  "build": {
+    "appId": "com.ticktide.app",
+    "productName": "TickTide",
+    "win": {
+      "target": "nsis"
+    },
+    "mac": {
+      "target": "dmg"
+    },
+    "files": [
+      "main.js",
+      "dist/**/*"
+    ],
+    "asar": true
   },
   "dependencies": {
     "@expo-google-fonts/inter": "^0.2.3",
@@ -45,6 +63,8 @@
   "devDependencies": {
     "@babel/core": "^7.25.2",
     "@types/react": "~18.3.12",
+    "electron": "^35.1.0",
+    "electron-builder": "^25.1.8",
     "typescript": "^5.3.3"
   }
 }
