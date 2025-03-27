@@ -1,14 +1,31 @@
+
 const { app, BrowserWindow } = require('electron');
 
-let mainWindow;
-app.on('ready', () => {
-  mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+const path = require('path');
+
+function createWindow() {
+  win = new BrowserWindow({
+    // Assign it here
+    width: 1280,
+    height: 800,
     webPreferences: {
       nodeIntegration: true,
     },
   });
+  win.loadFile(path.join(__dirname, 'dist/index.html'));
+}
 
-  mainWindow.loadURL('http://localhost:8081'); // Change this to the bundled app
+app.whenReady().then(createWindow);
+
+// Close the window properly when all windows are closed
+app.on('window-all-closed', () => {
+  if (process.platform !== 'darwin') {
+    app.quit();
+  }
+});
+
+app.on('activate', () => {
+  if (BrowserWindow.getAllWindows().length === 0) {
+    createWindow();
+  }
 });

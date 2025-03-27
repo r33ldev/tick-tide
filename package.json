@@ -1,8 +1,9 @@
 {
-  "name": "@ticktide/app",
+  "name": "ticktide",
   "main": "main.js",
   "version": "1.0.0",
   "private": true,
+  "type": "commonjs",
   "scripts": {
     "electron": "electron .",
     "build:win": "electron-builder --win",
@@ -33,7 +34,7 @@
     "files": [
       "main.js",
       "package.json",
-      "dist/**/*",
+      "dist/web/**/*",
       "!node_modules/.cache",
       "!node_modules/electron",
       "!node_modules/electron-builder",
@@ -71,6 +72,7 @@
     "expo-system-ui": "^4.0.7",
     "expo-web-browser": "^14.0.2",
     "lucide-react-native": "^0.475.0",
+    "metro-react-native-babel-transformer": "^0.77.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-native": "0.76.6",
